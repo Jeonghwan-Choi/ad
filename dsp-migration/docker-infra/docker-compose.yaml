@@ -1,0 +1,21 @@
+services:
+
+  docker-mysql:
+    image: mysql:8.3
+    volumes:
+      - ../../../docker-infra/data/legacy-db:/var/lib/mysql
+    ports:
+      - "3309:3306"
+      #    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: legacy-ad
+  docker-postgresql:
+    image: postgres:16.2
+    volumes:
+      - ../../../docker-infra/data/recent-db:/var/lib/postgresql/data
+    ports:
+      - "5434:5432"
+    environment:
+      POSTGRES_PASSWORD: 1234
